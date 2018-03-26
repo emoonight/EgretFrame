@@ -45,6 +45,7 @@ class Main extends eui.UILayer {
             egret.ticker.resume();
         }
 
+
         //inject the custom material parser
         //注入自定义的素材解析器
         let assetAdapter = new AssetAdapter();
@@ -55,6 +56,7 @@ class Main extends eui.UILayer {
         this.runGame().catch(e => {
             console.log(e);
         })
+
     }
 
     private async runGame() {
