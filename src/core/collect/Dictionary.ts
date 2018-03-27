@@ -25,6 +25,11 @@ class Dictionary<T> implements IDictionary<T>{
         }
     }
 
+    public get Count()
+    {
+        return this.m_keys.length;
+    }
+
     public add(key:string,value:T):void
     {
         this[key]=value;
@@ -61,6 +66,7 @@ class Dictionary<T> implements IDictionary<T>{
     {
         return this.m_keys;
     }
+
 
     public values():T[]
     {
