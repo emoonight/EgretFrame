@@ -30,7 +30,7 @@ class ResManager
      * @param type 类型
      * @param call 回调
      */
-    public loadRes(url:string,type:string, call:Action)
+    public loadRes(url:string,type:string, call:Observer)
     {
         switch(type)
         {
