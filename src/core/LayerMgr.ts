@@ -19,27 +19,8 @@ class LayerMgr
 }
 
 
-abstract class  View extends egret.DisplayObjectContainer implements IDispose,IRun
-{
-    protected m_ctl:Controller;
-
-    abstract update();
-    abstract dispose();
-
-    public abstract show();
-    public abstract hide();
-
-}
 
 
-abstract class Controller implements IDispose
-{
-    protected m_view:View;
 
-    protected abstract register();
-    protected abstract remove();
-
-    abstract dispose();
-}
 
 
