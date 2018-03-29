@@ -2323,7 +2323,7 @@ var RES;
      * @platform Web,Native
      * @language zh_CN
      */
-    function setMaxLoadingThread(thread) {
+function setMaxLoadingThread(thread) {
         if (!instance)
             instance = new Resource();
         instance.setMaxLoadingThread(thread);

@@ -23,6 +23,7 @@ class TickMgr
         return false;
     }
 
+    //插入刷新队列
     public addTick(v:View)
     {
         let vk = v.tickIndex.toString();
