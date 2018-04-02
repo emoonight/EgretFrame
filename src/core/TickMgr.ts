@@ -26,6 +26,7 @@ class TickMgr
     //插入刷新队列
     public addTick(v:View)
     {
+        let index = v.tickIndex;
         let vk = v.tickIndex.toString();
         if(this.m_tickQueue.containsKey(vk))
         {

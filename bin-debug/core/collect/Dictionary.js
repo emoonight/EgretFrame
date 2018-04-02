@@ -14,6 +14,13 @@ var Dictionary = (function () {
             }
         }
     }
+    Object.defineProperty(Dictionary.prototype, "Count", {
+        get: function () {
+            return this.m_keys.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Dictionary.prototype.add = function (key, value) {
         this[key] = value;
         this.m_keys.push(key);

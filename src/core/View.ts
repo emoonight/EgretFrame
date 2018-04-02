@@ -1,5 +1,6 @@
 abstract class  View extends egret.DisplayObjectContainer implements IDispose,IRun
 {
+    private m_events:{[key:string]:Array<Observer>}={};
 
     public tickIndex:number;    //
     
@@ -8,7 +9,30 @@ abstract class  View extends egret.DisplayObjectContainer implements IDispose,IR
     abstract update(time:number);
     abstract dispose();
 
-    public abstract show();
-    public abstract hide();
+    protected  addEvent(type:string,ob:Observer)
+    {
+        if("undefined" === typeof(this.m_events[type]))
+            this.m_events[type] = [];
+        
+        this.m_events[type].push(ob);
+    }
+
+    protected abstract registerEvents();
+
+    protected removeEvents()
+    {
+
+    }
+
+    public show()
+    {
+
+    }
+
+    public  hide()
+    {
+        this.removeEvents();
+        this.dispose();
+    }
 
 }

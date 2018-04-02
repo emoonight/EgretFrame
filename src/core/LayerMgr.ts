@@ -13,7 +13,6 @@ class LayerMgr
 
     public addLayer()
     {
-        eui.UILayer
     }
 
 }

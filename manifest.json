@@ -11,13 +11,22 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
+		"bin-debug/core/View.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
+		"bin-debug/core/Controller.js",
+		"bin-debug/core/LayerMgr.js",
+		"bin-debug/core/TickMgr.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/core/collect/Dictionary.js",
+		"bin-debug/core/dragonBone/DragonBonesArmature.js",
+		"bin-debug/core/interface/IDispose.js",
+		"bin-debug/core/interface/IRun.js",
+		"bin-debug/core/net/SocketMgr.js",
 		"bin-debug/core/res/ResManager.js",
-		"bin-debug/core/spread/Action.js"
+		"bin-debug/core/spread/Emitter.js",
+		"bin-debug/core/spread/Observer.js"
 	]
 }
