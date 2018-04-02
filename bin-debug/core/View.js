@@ -12,6 +12,7 @@ var View = (function (_super) {
     __extends(View, _super);
     function View() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        //自定义索引器
         _this.m_events = {};
         return _this;
     }
@@ -21,6 +22,11 @@ var View = (function (_super) {
         this.m_events[type].push(ob);
     };
     View.prototype.removeEvents = function () {
+        for (var k in this.m_events) {
+            while (this.m_events[k].length > 0)
+                this.m_events[k].pop();
+            delete this.m_events[k];
+        }
     };
     View.prototype.show = function () {
     };
@@ -31,4 +37,3 @@ var View = (function (_super) {
     return View;
 }(egret.DisplayObjectContainer));
 __reflect(View.prototype, "View", ["IDispose", "IRun"]);
-//# sourceMappingURL=View.js.map

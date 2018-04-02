@@ -7,4 +7,3 @@ var Controller = (function () {
     return Controller;
 }());
 __reflect(Controller.prototype, "Controller", ["IDispose"]);
-//# sourceMappingURL=Controller.js.map

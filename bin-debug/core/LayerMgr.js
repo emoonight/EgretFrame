@@ -18,4 +18,3 @@ var LayerMgr = (function () {
     return LayerMgr;
 }());
 __reflect(LayerMgr.prototype, "LayerMgr");
-//# sourceMappingURL=LayerMgr.js.map

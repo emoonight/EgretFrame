@@ -41,4 +41,3 @@ var ResManager = (function () {
     return ResManager;
 }());
 __reflect(ResManager.prototype, "ResManager");
-//# sourceMappingURL=ResManager.js.map
