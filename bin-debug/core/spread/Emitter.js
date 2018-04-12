@@ -1,8 +1,6 @@
-"use strict";
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var Emitter = (function () {
     function Emitter() {
     }
@@ -49,6 +47,5 @@ var Emitter = (function () {
     Emitter.m_listener = {};
     return Emitter;
 }());
-exports.Emitter = Emitter;
-__reflect(Emitter.prototype, "\"e:/egret/Frame/EgretFrame/src/core/spread/Emitter\".Emitter");
+__reflect(Emitter.prototype, "Emitter");
 //# sourceMappingURL=Emitter.js.map

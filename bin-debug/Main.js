@@ -116,6 +116,7 @@ var Main = (function (_super) {
                     case 4:
                         userInfo = _a.sent();
                         console.log(userInfo);
+                        this.doTest();
                         return [2 /*return*/];
                 }
             });
@@ -266,6 +267,7 @@ var Main = (function (_super) {
     };
     Main.prototype.doTest = function () {
         TickMgr.Instance.start();
+        TickMgr.Instance.addTick(ResManager.Instance);
         ResManager.Instance.loadRes("../resource/assets/BM_BeiBao.png", new Observer(function () { }, this));
     };
     return Main;

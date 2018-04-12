@@ -83,13 +83,14 @@ var ResManager = (function () {
         return __awaiter(this, void 0, void 0, function () {
             var lp, ls, r;
             return __generator(this, function (_a) {
-                lp = url.lastIndexOf('.');
-                ls = url.lastIndexOf('/');
+                lp = url.lastIndexOf('.') + 1;
+                ls = url.lastIndexOf('/') + 1;
                 r = new LoadItemInfo();
                 r.url = url;
                 r.type = url.substring(lp);
-                r.name = url.substring(lp, ls);
+                r.name = url.substring(ls, lp - 1);
                 r.call = call;
+                r.root = "";
                 this.m_buffer.push(r);
                 return [2 /*return*/];
             });
@@ -109,14 +110,17 @@ var ResManager = (function () {
     };
     ResManager.prototype.update = function (time) {
         if (this.m_thread > 0) {
-            var r = this.m_buffer.shift();
-            --this.m_thread;
-            var t = this.getProcessor(r.type);
-            this.m_loader.loadResource(r, t).then(function (v) {
-                console.log("fill---------->" + v);
-            }, function (resean) {
-                console.log("resean----------->" + resean);
-            });
+            if (this.m_buffer.length > 0) {
+                var r_1 = this.m_buffer.shift();
+                --this.m_thread;
+                var t = this.getProcessor(r_1.type);
+                this.m_loader.loadResource(r_1, t).then(function (v) {
+                    console.log("fill---------->" + v); //成功 v 是加载的资源
+                    RES.getRes(r_1.name);
+                }, function (resean) {
+                    console.log("resean----------->" + resean); //失败
+                });
+            }
         }
     };
     ResManager.s_maxThread = 5;

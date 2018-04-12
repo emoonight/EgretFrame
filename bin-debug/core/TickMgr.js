@@ -3,6 +3,7 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 };
 var TickMgr = (function () {
     function TickMgr() {
+        this.m_curTime = 0;
         this.m_currIndex = 0;
     }
     Object.defineProperty(TickMgr, "Instance", {
@@ -23,10 +24,10 @@ var TickMgr = (function () {
     TickMgr.prototype.onTick = function (time) {
         if (this.m_currIndex > 0) {
             var now = Date.now();
-            for (var i = 0; i < this.m_currIndex; i++) {
+            for (var k in this) {
                 var gap = now - this.m_curTime;
                 if (gap > 0) {
-                    this[i].update(gap);
+                    this[k].update(gap);
                     this.m_curTime = now;
                     return true;
                 }
@@ -37,7 +38,7 @@ var TickMgr = (function () {
     //插入刷新队列
     TickMgr.prototype.addTick = function (run) {
         if (run.tickIndex >= this.m_currIndex || run.tickIndex < 0) {
-            run.tickIndex = ++this.m_currIndex;
+            run.tickIndex = this.m_currIndex++;
             this[this.m_currIndex] = run;
         }
         else {

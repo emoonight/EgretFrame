@@ -11,7 +11,7 @@ class TickMgr
     }
 
 
-    private m_curTime:number;
+    private m_curTime:number=0;
     private m_currIndex=0;
 
     public start()
@@ -30,12 +30,12 @@ class TickMgr
         if(this.m_currIndex > 0)
         {
             let now = Date.now();
-            for(let i = 0 ; i < this.m_currIndex ; i++)
+            for(let k in this)
             {
                 let gap = now - this.m_curTime;
                 if(gap > 0)
                 {
-                    this[i].update(gap);
+                    this[k].update(gap);
                     this.m_curTime = now;
                     return true;
                 }
@@ -50,7 +50,7 @@ class TickMgr
     {
         if(run.tickIndex >= this.m_currIndex || run.tickIndex < 0)
         {
-            run.tickIndex = ++this.m_currIndex;
+            run.tickIndex = this.m_currIndex++;
             this[this.m_currIndex]=run;
         }
         else

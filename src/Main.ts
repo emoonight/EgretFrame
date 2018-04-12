@@ -67,7 +67,8 @@ class Main extends eui.UILayer {
         const userInfo = await platform.getUserInfo();
         console.log(userInfo);
 
-    }
+        this.doTest()
+}
 
     private async loadResource() {
         try {
@@ -214,6 +215,7 @@ class Main extends eui.UILayer {
     private doTest()
     {
         TickMgr.Instance.start();
+        TickMgr.Instance.addTick(ResManager.Instance);
         ResManager.Instance.loadRes("../resource/assets/BM_BeiBao.png",new Observer(function(){},this));
     }
 }

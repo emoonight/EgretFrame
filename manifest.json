@@ -15,15 +15,13 @@
 		"bin-debug/core/interface/IDispose.js",
 		"bin-debug/Platform.js",
 		"bin-debug/ThemeAdapter.js",
-		"bin-debug/core/Command.js",
 		"bin-debug/core/Global.js",
 		"bin-debug/core/TickMgr.js",
-		"bin-debug/core/TsType.js",
 		"bin-debug/core/collect/Dictionary.js",
 		"bin-debug/core/collect/Heap.js",
 		"bin-debug/core/controller/Controller.js",
 		"bin-debug/core/dragonBone/DragonBonesArmature.js",
-		"bin-debug/LoadingUI.js",
+		"bin-debug/game/utils/resUtils.js",
 		"bin-debug/core/interface/IFunc.js",
 		"bin-debug/core/interface/ILoading.js",
 		"bin-debug/core/interface/IRun.js",
@@ -36,6 +34,6 @@
 		"bin-debug/core/view/Layer.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
-		"bin-debug/game/utils/resUtils.js"
+		"bin-debug/LoadingUI.js"
 	]
 }

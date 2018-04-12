@@ -55,14 +55,15 @@ class ResManager implements IRun
 
     public async loadRes(url:string,call:Observer)
     {
-        let lp = url.lastIndexOf('.');
-        let ls = url.lastIndexOf('/');
+        let lp = url.lastIndexOf('.')+1;
+        let ls = url.lastIndexOf('/')+1;
         
         let r = new LoadItemInfo();
         r.url = url;
         r.type = url.substring(lp);
-        r.name = url.substring(lp,ls);
+        r.name = url.substring(ls,lp-1);
         r.call = call;
+        r.root="";
         this.m_buffer.push(r);
     }
 
@@ -86,14 +87,18 @@ class ResManager implements IRun
     {
         if(this.m_thread > 0)   //一帧只加载一个资源
         {
-            let r = this.m_buffer.shift()
-            --this.m_thread;
-            let t = this.getProcessor(r.type);
-            this.m_loader.loadResource(r,t).then(function(v){
-                console.log("fill---------->"+v);
-            },function(resean){
-                console.log("resean----------->"+resean);
-            });
+            if(this.m_buffer.length > 0)
+            {
+                let r = this.m_buffer.shift()
+                --this.m_thread;
+                let t = this.getProcessor(r.type);
+                this.m_loader.loadResource(r,t).then(function(v){
+                    console.log("fill---------->"+v);       //成功 v 是加载的资源
+                    RES.getRes(r.name);
+                },function(resean){
+                    console.log("resean----------->"+resean);   //失败
+                });
+            }
         }
     }
 
