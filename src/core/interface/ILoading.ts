@@ -1,0 +1,4 @@
+interface ILoading 
+{
+    onProgress();
+}

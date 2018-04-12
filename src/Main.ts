@@ -51,6 +51,7 @@ class Main extends eui.UILayer {
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
 
+    
 
         this.runGame().catch(e => {
             console.log(e);
@@ -207,5 +208,12 @@ class Main extends eui.UILayer {
         panel.horizontalCenter = 0;
         panel.verticalCenter = 0;
         this.addChild(panel);
+    }
+
+
+    private doTest()
+    {
+        TickMgr.Instance.start();
+        ResManager.Instance.loadRes("../resource/assets/BM_BeiBao.png",new Observer(function(){},this));
     }
 }

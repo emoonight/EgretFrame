@@ -50,4 +50,5 @@ var Emitter = (function () {
     return Emitter;
 }());
 exports.Emitter = Emitter;
-__reflect(Emitter.prototype, "\"E:/egret/Frame/EgretFrame/src/core/spread/Emitter\".Emitter");
+__reflect(Emitter.prototype, "\"e:/egret/Frame/EgretFrame/src/core/spread/Emitter\".Emitter");
+//# sourceMappingURL=Emitter.js.map

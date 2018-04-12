@@ -264,6 +264,11 @@ var Main = (function (_super) {
         panel.verticalCenter = 0;
         this.addChild(panel);
     };
+    Main.prototype.doTest = function () {
+        TickMgr.Instance.start();
+        ResManager.Instance.loadRes("../resource/assets/BM_BeiBao.png", new Observer(function () { }, this));
+    };
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");
+//# sourceMappingURL=Main.js.map

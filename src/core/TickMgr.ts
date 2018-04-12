@@ -1,20 +1,32 @@
 class TickMgr
 {
-    
     [order:number]:IRun;
-    
+
+    private static s_instance:TickMgr;
+    public static get Instance():TickMgr
+    {
+        if(TickMgr.s_instance == null)
+            TickMgr.s_instance = new TickMgr();
+        return TickMgr.s_instance;        
+    }
+
+
     private m_curTime:number;
     private m_currIndex=0;
 
-    constructor()
+    public start()
     {
         egret.ticker.$startTick(this.onTick,this);
     }
 
 
+    public stop()
+    {
+        egret.ticker.$stopTick(this.onTick,this);
+    }
+
     private onTick(time:number):boolean
     {
-        
         if(this.m_currIndex > 0)
         {
             let now = Date.now();
@@ -51,6 +63,27 @@ class TickMgr
             }
             this[run.tickIndex]=run;
         }
+    }
+
+
+    public removeTick(run:IRun):boolean
+    {
+        if(this.m_currIndex > 0)
+        {
+            for(let i = 0 ; i < this.m_currIndex ; i++)
+            {
+                let ir = this[i];
+
+                if(typeof ir === typeof run && ir.tickIndex == run.tickIndex)
+                {
+                    this.m_currIndex --;
+                    delete this[i];
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 }

@@ -36,27 +36,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var DebugPlatform = (function () {
-    function DebugPlatform() {
+var ImageAnalyzer = (function () {
+    function ImageAnalyzer() {
     }
-    DebugPlatform.prototype.getUserInfo = function () {
+    ImageAnalyzer.prototype.onLoadStart = function (host, res) {
         return __awaiter(this, void 0, void 0, function () {
+            var data;
             return __generator(this, function (_a) {
-                return [2 /*return*/, { nickName: "username" }];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, host.load(res, RES.processor.ImageProcessor)];
+                    case 1:
+                        data = _a.sent();
+                        return [2 /*return*/, data];
+                }
             });
         });
     };
-    DebugPlatform.prototype.login = function () {
+    ImageAnalyzer.prototype.onRemoveStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/];
+                return [2 /*return*/, Promise.resolve()];
             });
         });
     };
-    return DebugPlatform;
+    return ImageAnalyzer;
 }());
-__reflect(DebugPlatform.prototype, "DebugPlatform", ["Platform"]);
-if (!window.platform) {
-    window.platform = new DebugPlatform();
-}
-//# sourceMappingURL=Platform.js.map
+__reflect(ImageAnalyzer.prototype, "ImageAnalyzer", ["RES.processor.Processor"]);
+//# sourceMappingURL=ImageAnalyzer.js.map

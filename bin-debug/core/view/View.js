@@ -10,10 +10,12 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 var View = (function (_super) {
     __extends(View, _super);
-    function View() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function View(ctl) {
+        var _this = _super.call(this) || this;
         //自定义索引器
         _this.m_events = {};
+        _this.tickIndex = -1; //
+        _this.m_ctl = ctl;
         return _this;
     }
     View.prototype.addEvent = function (type, ob) {
@@ -29,6 +31,11 @@ var View = (function (_super) {
         }
     };
     View.prototype.show = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        this.registerEvents();
     };
     View.prototype.hide = function () {
         this.removeEvents();
@@ -37,3 +44,4 @@ var View = (function (_super) {
     return View;
 }(egret.DisplayObjectContainer));
 __reflect(View.prototype, "View", ["IDispose", "IRun"]);
+//# sourceMappingURL=View.js.map
