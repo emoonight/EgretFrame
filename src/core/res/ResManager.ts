@@ -92,12 +92,7 @@ class ResManager implements IRun
                 let r = this.m_buffer.shift()
                 --this.m_thread;
                 let t = this.getProcessor(r.type);
-                this.m_loader.loadResource(r,t).then(function(v){
-                    console.log("fill---------->"+v);       //成功 v 是加载的资源
-                    RES.getRes(r.name);
-                },function(resean){
-                    console.log("resean----------->"+resean);   //失败
-                });
+                this.m_loader.loadResource(r,t);
             }
         }
     }

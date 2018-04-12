@@ -216,6 +216,6 @@ class Main extends eui.UILayer {
     {
         TickMgr.Instance.start();
         TickMgr.Instance.addTick(ResManager.Instance);
-        ResManager.Instance.loadRes("../resource/assets/BM_BeiBao.png",new Observer(function(){},this));
+        ResManager.Instance.loadRes("/resource/assets/BM_BeiBao.png",new Observer(function(){},this));
     }
 }
