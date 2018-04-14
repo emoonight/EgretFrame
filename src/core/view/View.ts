@@ -7,7 +7,6 @@ abstract class  View extends egret.DisplayObjectContainer implements IDispose,IR
     
     protected m_ctl:Controller;
 
-    abstract update(time:number);
     abstract dispose();
 
     constructor(ctl:Controller)

@@ -1,10 +1,9 @@
 class ImageAnalyzer implements RES.processor.Processor
 {
-    async  onLoadStart(host:RES.ProcessHost,res:RES.ResourceInfo):Promise<any>
+    async  onLoadStart(host:RES.ProcessHost,res:LoadItemInfo):Promise<any>
     {
         let data = await host.load(res,RES.processor.ImageProcessor);
-        console.log("------------>root+"+res.root);
-        console.log("------------>name+"+res.name);
+        res.loadBack.Notify(data,res);
         return data;
     }
 

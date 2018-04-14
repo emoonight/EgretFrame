@@ -1,4 +1,4 @@
-abstract class Controller implements IDispose
+abstract class UiController extends Controller
 {
     protected abstract m_view:View;
 

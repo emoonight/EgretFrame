@@ -36,14 +36,21 @@ class LayerMgr
         this.addLayer(LayerType.UI,stage)
     }
 
+
+    public getLayer(type:LayerType):Layer
+    {
+        return this[type];
+    }
 }
 
 enum LayerType
 {
-    SCENE=0,
-    ENTITY=1,
-    EFFECT=2,
-    UI=3
+    SCENE=0,        //场景
+    ENTITY=1,       //实体
+    EFFECT=2,       //特效
+    UI=3,           //ui
+    POP=4,          //弹出
+    GUID=5          //指引
 }
 
 

@@ -266,9 +266,11 @@ var Main = (function (_super) {
         this.addChild(panel);
     };
     Main.prototype.doTest = function () {
-        TickMgr.Instance.start();
-        TickMgr.Instance.addTick(ResManager.Instance);
-        ResManager.Instance.loadRes("../resource/assets/BM_BeiBao.png", new Observer(function () { }, this));
+        ControllerMgr.Instance.show(PreLoadController);
+        // TickMgr.Instance.start();
+        // TickMgr.Instance.addTick(ResMgr.Instance);
+        // ResMgr.Instance.loadRes("/resource/assets/BM_BeiBao.png",new Observer(function(){},this));
+        // ResMgr.Instance.loadRes("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=293411449,1930502181&fm=15&gp=0.jpg",new Observer(function(){},this));
     };
     return Main;
 }(eui.UILayer));

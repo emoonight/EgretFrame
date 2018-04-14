@@ -47,8 +47,7 @@ var ImageAnalyzer = (function () {
                     case 0: return [4 /*yield*/, host.load(res, RES.processor.ImageProcessor)];
                     case 1:
                         data = _a.sent();
-                        console.log("------------>root+" + res.root);
-                        console.log("------------>name+" + res.name);
+                        res.loadBack.Notify(data, res);
                         return [2 /*return*/, data];
                 }
             });

@@ -2547,10 +2547,8 @@ var RES;
          * @returns {any}
          */
         Resource.prototype.getRes = function (resKey) {
-            console.log("key-------->"+resKey);
             var result = RES.config.getResourceWithSubkey(resKey);
             if (result) {
-                console.log(result);
                 var r = result.r;
                 var key = result.key;
                 var subkey = result.subkey;

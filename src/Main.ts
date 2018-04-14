@@ -214,8 +214,10 @@ class Main extends eui.UILayer {
 
     private doTest()
     {
-        TickMgr.Instance.start();
-        TickMgr.Instance.addTick(ResManager.Instance);
-        ResManager.Instance.loadRes("/resource/assets/BM_BeiBao.png",new Observer(function(){},this));
+
+        // TickMgr.Instance.start();
+        // TickMgr.Instance.addTick(ResMgr.Instance);
+        // ResMgr.Instance.loadRes("/resource/assets/BM_BeiBao.png",new Observer(function(){},this));
+        // ResMgr.Instance.loadRes("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=293411449,1930502181&fm=15&gp=0.jpg",new Observer(function(){},this));
     }
 }

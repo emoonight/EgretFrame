@@ -47,6 +47,7 @@ var JsonAnalyzer = (function () {
                     case 0: return [4 /*yield*/, host.load(res, RES.processor.JsonProcessor)];
                     case 1:
                         data = _a.sent();
+                        //json 解析
                         return [2 /*return*/, data];
                 }
             });
