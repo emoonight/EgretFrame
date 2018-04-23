@@ -26,4 +26,3 @@ var DragBonesArmatrure = (function (_super) {
     return DragBonesArmatrure;
 }(View));
 __reflect(DragBonesArmatrure.prototype, "DragBonesArmatrure");
-//# sourceMappingURL=DragonBonesArmature.js.map

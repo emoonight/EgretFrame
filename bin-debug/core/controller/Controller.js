@@ -4,7 +4,16 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 var Controller = (function () {
     function Controller() {
     }
+    Object.defineProperty(Controller.prototype, "Model", {
+        get: function () {
+            return this.m_model;
+        },
+        set: function ($md) {
+            this.m_model = $md;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Controller;
 }());
 __reflect(Controller.prototype, "Controller", ["IDispose"]);
-//# sourceMappingURL=Controller.js.map

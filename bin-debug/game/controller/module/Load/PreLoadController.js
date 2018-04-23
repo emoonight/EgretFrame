@@ -19,7 +19,10 @@ var PreLoadController = (function (_super) {
     };
     PreLoadController.prototype.dispose = function () {
     };
+    PreLoadController.prototype.show = function () {
+    };
+    PreLoadController.prototype.hide = function () {
+    };
     return PreLoadController;
 }(Controller));
 __reflect(PreLoadController.prototype, "PreLoadController");
-//# sourceMappingURL=PreLoadController.js.map

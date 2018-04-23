@@ -1,15 +1,6 @@
-class ControllerMgr 
+class ControllerMgr extends Single
 {
-    private static s_instance:ControllerMgr;
-    public static get Instance():ControllerMgr
-    {
-        if(ControllerMgr.s_instance == null)
-            ControllerMgr.s_instance = new ControllerMgr();
-        
-        return ControllerMgr.s_instance;
-    }
-    
-    private m_ctrlPool:{[key:string]:Controller}={};
+    private m_ctrlPool:{[key:number]:Controller}={};
 
     public getCtrl<T extends Controller>(c:{new():T}):T
     {
@@ -22,6 +13,7 @@ class ControllerMgr
         return <T>this.m_ctrlPool[k];
     }
 
+
     public show<T extends Controller>(c:{new():T},...args):void
     {
         let ctrl:T = this.getCtrl(c);
@@ -32,5 +24,11 @@ class ControllerMgr
     {
         let ctrl:T = this.getCtrl(c);
         ctrl.hide();
+    }
+
+    public getCtrollerModel<T extends Controller>(c:{new():T}):Model
+    {
+        let ctrl:T = this.getCtrl(c);
+        return ctrl.Model;
     }
 }

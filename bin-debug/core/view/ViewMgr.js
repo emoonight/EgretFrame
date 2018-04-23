@@ -8,15 +8,11 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-var Layer = (function (_super) {
-    __extends(Layer, _super);
-    function Layer() {
-        var _this = _super.call(this) || this;
-        _this.touchEnabled = false;
-        _this.$touchChildren = true;
-        return _this;
+var ViewMgr = (function (_super) {
+    __extends(ViewMgr, _super);
+    function ViewMgr() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    return Layer;
-}(egret.DisplayObjectContainer));
-__reflect(Layer.prototype, "Layer");
-//# sourceMappingURL=Layer.js.map
+    return ViewMgr;
+}(Single));
+__reflect(ViewMgr.prototype, "ViewMgr");

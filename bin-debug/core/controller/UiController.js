@@ -8,19 +8,11 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-var PreLoadView = (function (_super) {
-    __extends(PreLoadView, _super);
-    function PreLoadView() {
+var UiController = (function (_super) {
+    __extends(UiController, _super);
+    function UiController() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    PreLoadView.prototype.registerEvents = function () {
-    };
-    PreLoadView.prototype.onProgress = function (current, total) {
-    };
-    PreLoadView.prototype.show = function () {
-    };
-    PreLoadView.prototype.dispose = function () {
-    };
-    return PreLoadView;
-}(View));
-__reflect(PreLoadView.prototype, "PreLoadView", ["RES.PromiseTaskReporter"]);
+    return UiController;
+}(Controller));
+__reflect(UiController.prototype, "UiController");

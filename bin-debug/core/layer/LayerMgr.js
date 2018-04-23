@@ -29,6 +29,9 @@ var LayerMgr = (function () {
         this.addLayer(LayerType.EFFECT, stage);
         this.addLayer(LayerType.UI, stage);
     };
+    LayerMgr.prototype.getLayer = function (type) {
+        return this[type];
+    };
     return LayerMgr;
 }());
 __reflect(LayerMgr.prototype, "LayerMgr");
@@ -38,5 +41,6 @@ var LayerType;
     LayerType[LayerType["ENTITY"] = 1] = "ENTITY";
     LayerType[LayerType["EFFECT"] = 2] = "EFFECT";
     LayerType[LayerType["UI"] = 3] = "UI";
+    LayerType[LayerType["POP"] = 4] = "POP";
+    LayerType[LayerType["GUID"] = 5] = "GUID"; //指引
 })(LayerType || (LayerType = {}));
-//# sourceMappingURL=LayerMgr.js.map

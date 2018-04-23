@@ -1,0 +1,6 @@
+class ViewMgr extends Single
+{
+
+    
+
+}

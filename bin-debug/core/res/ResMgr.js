@@ -204,4 +204,3 @@ var LoadItemInfo = (function () {
     return LoadItemInfo;
 }());
 __reflect(LoadItemInfo.prototype, "LoadItemInfo", ["RES.ResourceInfo"]);
-//# sourceMappingURL=ResMgr.js.map
