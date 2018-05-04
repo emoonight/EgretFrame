@@ -13,7 +13,7 @@ class LayerMgr
 
     public  addLayer(type:LayerType,stage:egret.Stage)
     {
-        LayerMgr.s_instance[type] = new Layer();
+        LayerMgr.s_instance[type] = new Layer(type);
         stage.addChild(LayerMgr.s_instance[type]);
     }
 

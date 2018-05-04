@@ -1,3 +1,0 @@
-
-
-var lyMgr = LayerMgr.Instance;

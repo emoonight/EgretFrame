@@ -1,15 +1,6 @@
-class TickMgr
+class TickMgr extends Single
 {
     [order:number]:IRun;
-
-    private static s_instance:TickMgr;
-    public static get Instance():TickMgr
-    {
-        if(TickMgr.s_instance == null)
-            TickMgr.s_instance = new TickMgr();
-        return TickMgr.s_instance;        
-    }
-
 
     private m_curTime:number=0;
     private m_currIndex=0;
