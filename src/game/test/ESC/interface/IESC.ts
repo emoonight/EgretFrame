@@ -1,48 +1,6 @@
 module ecs
 {
-    /************************* esc system接口 *************************/
-    export interface IEcsSystem{}
-
-    export interface IEcsInitSystem extends IEcsSystem
-    {
-        initialize();
-        destroy();
-    }    
-
-    export interface IEcsPreInitSystem extends IEcsSystem
-    {
-        preInitialize();
-        preDestroy();
-    }
-
-
-    export interface IEcsRunSystem extends IEcsSystem
-    {
-        run():void;
-    }
-
-    /************************* esc system接口 *************************/
-
     /**                                                       */
-    export interface IEcsWorldDebugListener
-    {
-        onEntityCreated($entity:number):void;
-        onEntityRemoved($entity:number):void;
-        onComponentAdded($entity:number,$component:any):void;
-        onComponentRemoved($entity:number,$component:any):void;
-    }
-
-    export interface IEcsReadOnlyWorld
-    {
-        getComponent<T>($entity:number):T;
-    }
-
-    export interface IEcsFilterListener
-    {
-        onFilterEntityAdded($entity:number,$reason:any):void;
-        onFilterEntityRemoved($entity:number,$reason:any):void;
-        onFilterEntityUpdated($entity:number,$reason:any):void;
-    }
 
 
     export enum Op
@@ -54,21 +12,6 @@ module ecs
         UpdateComponent
     }
 
-    export class EcsWorldStats
-    {
-        ActiveEntities:number
-        ReservedEntities:number
-        Filters:number
-        Components:number    
-
-        constructor($active:number,$reserved:number,$filters:number,$components:number)
-        {
-            this.ActiveEntities = $active;
-            this.ReservedEntities  = $reserved ;
-            this.Filters = $filters;
-            this.Components =$components;
-        }
-    }
 
 
     export class EcsWorld implements IEcsReadOnlyWorld
@@ -89,6 +32,16 @@ module ecs
 
         private readonly m_delayedOpMask:EcsComponentMask =new EcsComponentMask();
         private readonly m_debugListeners:List<IEcsWorldDebugListener> = new List<IEcsWorldDebugListener>();
+        
+        public static registerComponentCreator<T>($creator:{new():T})
+        {
+            EcsComponentPool.Instance<EcsComponentPool<T>>().setCreator($creator);
+        }
+
+        public static ShrinkComponentPool<T>():void
+        {
+            EcsComponentPool.Instance<EcsComponentPool<T>>().shrink();
+        }
 
         //#region  debug
         public addDebugListener($observer:IEcsWorldDebugListener)
@@ -99,7 +52,7 @@ module ecs
                 return;
             }
 
-            this.m_debugListeners
+            this.m_debugListeners.add($observer);
         }
 
         public removeDebugListener($observer:IEcsWorldDebugListener)
@@ -108,25 +61,41 @@ module ecs
         }
         //#endregion
 
-        public registerComponentCreator<T>($creator:{new():T})
-        {
-            EcsComponentPool.Instance<EcsComponentPool<T>>().setCreator($creator);
-        }
-
         public createEntity():number
         {
             return this.createEntityInternal(true);
         }
 
-        public removeEntity(entity:number):void
+        public createrEntityWith<T>():T
         {
-            if(this.m_entities[entity].IsReserved)
-                this.addDelayedUpdate(Op.RemoveEntity,entity,null,-1);
+            return this.addComponent<T>(this.createEntityInternal(false));
         }
 
-        public getComponent<T>(entity:number):T
+        public removeEntity($entity:number):void
         {
-            let entityData = this.m_entities[entity];
+            if(this.m_entities[$entity].IsReserved)
+                this.addDelayedUpdate(Op.RemoveEntity,$entity,null,-1);
+        }
+
+        public reserveEntity(entity:number,entityData:EcsEntity)
+        {
+            entityData.IsReserved = true;
+            if(this.m_reservedEntitiesCount == this.m_reservedEntities.length)
+                this.m_reservedEntities = ArrayUtils.resize(this.m_reservedEntities,this.m_reservedEntitiesCount<<1);
+            
+            this.m_reservedEntities[this.m_reservedEntitiesCount++] = entity
+            
+            //#region  debug
+
+            for(let ii = 0 ; ii < this.m_debugListeners.count; ii++)
+                this.m_debugListeners[ii].onEntityRemoved(entity);
+
+            //#endregion
+        }
+
+        public getComponent<T>($entity:number):T
+        {
+            let entityData = this.m_entities[$entity];
             let pool = EcsComponentPool.Instance<EcsComponentPool<T>>();
             let link:ComponentsLink;
             // link.ItemId
@@ -141,10 +110,25 @@ module ecs
             return i != -1 ? pool.Items[link.ItemId] : null;
         }
 
-
-        public addComponent<T>(entity:number):T
+        public getComponents<T>(entity:number,list:IList<T>):IList<T>
         {
-            let entityData = this.m_entities[entity];
+            if(list != null)
+            {
+                list.clear();
+                let entityData = this.m_entities[entity];
+                for(let i = 0 ; i < entityData.ComponentsCount; i++)
+                {
+                    let link = entityData.Components[i];
+                    list.add(link.Pool.getExistItemById(link.ItemId));
+                }
+            }
+
+            return list;
+        }
+
+        public addComponent<T>($entity:number):T
+        {
+            let entityData = this.m_entities[$entity];
             let pool = EcsComponentPool.Instance<EcsComponentPool<T>>();
 
             //#region  debug
@@ -164,20 +148,20 @@ module ecs
                 entityData.Components = ArrayUtils.resize(entityData.Components,entityData.ComponentsCount<<1);
             
             entityData.Components[entityData.ComponentsCount++] = link;
-            this.addDelayedUpdate(Op.AddComponent,entity,pool,link.ItemId);
+            this.addDelayedUpdate(Op.AddComponent,$entity,pool,link.ItemId);
 
             //#region  debug
             let component = pool.Items[link.ItemId];
             for(let ii = 0 ; ii < this.m_debugListeners.count;ii++)
-                this.m_debugListeners[ii].onComponentAdded(entity,component);
+                this.m_debugListeners[ii].onComponentAdded($entity,component);
             //#endregion
 
             return pool.Items[link.ItemId];
         }
 
-        public removeComponent<T>(entity:number):void
+        public removeComponent<T>($entity:number):void
         {
-            let entityData =this.m_entities[entity];
+            let entityData =this.m_entities[$entity];
             let pool = EcsComponentPool.Instance<EcsComponentPool<T>>();
             let link:ComponentsLink;
             link.ItemId = -1;
@@ -196,7 +180,7 @@ module ecs
             }
             //#endregion
 
-            this.addDelayedUpdate(Op.RemoveComponent,entity,pool,link.ItemId);
+            this.addDelayedUpdate(Op.RemoveComponent,$entity,pool,link.ItemId);
             entityData.ComponentsCount--;
             ArrayUtils.copy(entityData.Components,i+1,entityData.Components,i,entityData.ComponentsCount-1);
         }
@@ -229,23 +213,7 @@ module ecs
             }
         }
 
-        public getComponents<T>(entity:number,list:IList<T>):IList<T>
-        {
-            if(list != null)
-            {
-                list.clear();
-                let entityData = this.m_entities[entity];
-                for(let i = 0 ; i < entityData.ComponentsCount; i++)
-                {
-                    let link = entityData.Components[i];
-                    list.add(link.Pool.getExistItemById(link.ItemId));
-                }
-            }
-
-            return list;
-        }
-
-        public getStates():EcsWorldStats
+        public getStats():EcsWorldStats
         {
             return new EcsWorldStats(
                 this.m_entitiesCount -this.m_reservedEntitiesCount,
@@ -266,18 +234,202 @@ module ecs
                 switch(op.Type)
                 {
                     case Op.RemoveEntity:
+                        //#region 
+                        if(entityData.IsReserved)
+                            console.warn("Entity already removed");
+                        //#endregion
+                        
+                        while(entityData.ComponentsCount > 0)
+                        {
+                            let link = entityData.Components[entityData.ComponentsCount-1];
+                            let componentId = link.Pool.getComponentTypeIndex();
+                            entityData.Mask.setBit(componentId,false);
+                            let componentToRemove = link.Pool.getExistItemById(link.ItemId);
+                            
+                            //#region  debug
+                            for(let ii = 0; ii<this.m_debugListeners.count ; ii++)
+                                this.m_debugListeners[ii].onComponentRemoved(op.Entity,componentToRemove);
+                            //#endregion
+
+                            this.updateFilters(op.Entity,componentToRemove,this.m_delayedOpMask,entityData.Mask);
+                            link.Pool.recycleById(link.ItemId);
+                            this.m_delayedOpMask.setBit(componentId,false);
+                            entityData.ComponentsCount--;
+                        }
+                        this.reserveEntity(op.Entity,entityData);
                         break;
                     case Op.SafeRemoveEntity:
+                        if(!entityData.IsReserved && entityData.ComponentsCount ==0)
+                            this.reserveEntity(op.Entity,entityData);
                         break;
                     case Op.AddComponent:
+                        let bit = op.Pool.getComponentTypeIndex();
+
+                        //#region debug
+
+                        if(entityData.Mask.getBit(bit))
+                            console.warn('cant add component on entity');
+
+                        //#endregion
+
+                        entityData.Mask.setBit(bit,true);
+                        this.updateFilters(op.Entity,op.Pool.getExistItemById(op.ComponentId),this.m_delayedOpMask,entityData.Mask);
                         break;
                     case Op.RemoveComponent:
+                        let bitRemove = op.Pool.getComponentTypeIndex();
+                        let componentInstance = op.Pool.getExistItemById(op.ComponentId);
+
+                        if(!entityData.Mask.getBit(bitRemove))
+                            console.warn('cant remove component on entity');
+                        
+                        for(let ii = 0 ; ii < this.m_debugListeners.count;i++)
+                            this.m_debugListeners[ii]
+                        
+                        entityData.Mask.setBit(bitRemove,false);
+                        this.updateFilters(op.Entity,componentInstance,this.m_delayedOpMask,entityData.Mask)
+                        op.Pool.recycleById(op.ComponentId);
+                        if(entityData.ComponentsCount == 0 )
+                            this.addDelayedUpdate(Op.SafeRemoveEntity,op.Entity,null,-1);
                         break;
                     case Op.UpdateComponent:
+                        let filterList =this.m_componentPoolFilters[op.Pool.getComponentTypeIndex()];
+                        let componentToUpdate = op.Pool.getExistItemById(op.ComponentId);
+                        for(let filterId = 0 ; filterId < filterList.Count;filterId++)
+                        {
+                            let filter =filterList.Filters[filterId];
+                            if(filter.ExcludeMask.BitsCount == 0 || !this.m_delayedOpMask.isIntersects(filter.ExcludeMask))
+                                filter.raiseOnUpdateEvent(op.Entity,componentToUpdate);
+                        }
                         break;
+                }
+
+                if(iMax > 0)
+                {
+                    if(this.m_delayedUpdatesCount == iMax)
+                        this.m_delayedUpdatesCount = 0;
+                    else
+                    {
+                        this.m_delayedUpdates = ArrayUtils.copy(this.m_delayedUpdates,iMax,this.m_delayedUpdates,0,this.m_delayedUpdatesCount - iMax);
+                        this.m_delayedUpdatesCount -=iMax
+
+                        //#region  debug
+                        if(level > 0)
+                            console.warn('Recursive updating in filters');
+                        //#endregion
+
+                        this.processDelayedUpdates(level + 1);
+                    }
+                    
                 }
             }
         }
+
+
+        public fillFilter(filter:EcsFilter):void
+        {
+            for(let i = 0 ; i < this.m_entitiesCount ; i++)
+            {
+                let entity = this.m_entities[i];
+                if(!entity.IsReserved && entity.Mask.isCompatible(filter))
+                {
+                    if(filter.Entities.length == filter.EntitiesCount)
+                        filter.Entities = ArrayUtils.resize(filter.Entities,filter.EntitiesCount <<1);
+                    
+                    filter.Entities[filter.EntitiesCount++] = i;
+                }
+            }   
+        }
+
+
+
+        public getFilter(include:EcsComponentMask,exclude:EcsComponentMask,shouldBeFilled:boolean):EcsFilter
+        {
+            //#region  debug
+            if(include == null)
+                console.warn('ArgumentNulllException include');
+            
+            if(exclude == null)
+                console.warn('ArgumentNulllException exclude');
+
+            //#endregion
+
+            let i = this.m_filtersCount - 1;
+            for(; i >= 0; i--)
+            {
+                if(this.m_filters[i].IncludeMask.isEquals(include) 
+                    && this.m_filters[i].ExcludeMask.isEquals(exclude))
+                    break;
+            }
+
+            if(i == -1)
+            {
+                i = this.m_filtersCount;
+
+                let filter = new EcsFilter(include,exclude);
+                if(shouldBeFilled)
+                    this.fillFilter(filter);
+                
+                if(this.m_filtersCount == this.m_filters.length)
+                    this.m_filters = ArrayUtils.resize(this.m_filters,this.m_filtersCount<<1);
+                
+                this.m_filters[this.m_filtersCount++] = filter;
+
+                for(let bit = 0 ; bit < include.BitsCount ; bit++)
+                {
+                    let typeId = include.Bits[bit];
+                    if(typeId == this.m_componentPoolFilters.length)
+                        this.m_componentPoolFilters = ArrayUtils.resize(this.m_componentPoolFilters,EcsHelpers.getPowerOfTwoSize(typeId+1));
+                    
+                    let filterList = this.m_componentPoolFilters[typeId];
+
+                    if(filterList == undefined)
+                    {
+                        filterList = new EcsFilterList();
+                        this.m_componentPoolFilters[typeId] = filterList;
+                    }
+
+                    if(filterList.Count == filterList.Filters.length)
+                        filterList.Filters = ArrayUtils.resize(filterList.Filters,filterList.Count << 1);
+                    
+                    filterList.Filters[filterList.Count++] = filter;
+                }
+            }
+
+            return this.m_filters[i];
+        }
+        
+        public updateFilters(entity:number,component:any,oldMask:EcsComponentMask,newMask:EcsComponentMask)
+        {
+            for(let i = this.m_filtersCount - 1 ; i >= 0; i--)
+            {
+                let filter = this.m_filters[i];
+                let isNewMaskCompatible = newMask.isCompatible(filter);
+                if(oldMask.isCompatible(filter))
+                {
+                    if(!isNewMaskCompatible)
+                    {
+                        //#region  debug
+                        let ii = filter.EntitiesCount - 1;
+                        for(; ii >=0 ; ii--)
+                        {
+                            if(filter.Entities[ii] == entity)
+                                break;
+                        }
+                        if(ii == -1)
+                            console.warn('entity should be in filter');
+                        
+                        filter.raiseOnRemoveEvent(entity,component);
+                        //#endregion 
+                    }
+                }
+                else
+                {
+                    if(isNewMaskCompatible)
+                        filter.raiseOnAddEvent(entity,component);
+                }
+            }
+        }
+
 
         public createEntityInternal($addSafeRemove:boolean):number
         {

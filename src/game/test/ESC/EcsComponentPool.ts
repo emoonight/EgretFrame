@@ -2,14 +2,14 @@ module ecs
 {
     const MinSize = 8;
 
-    export interface IEscComponentPool
+    export interface IEcsComponentPool
     {
         getExistItemById(idx:number);
         recycleById(id:number):void;
         getComponentTypeIndex():number;
     }
 
-    export class EcsComponentPool<T> extends Single implements IEscComponentPool
+    export class EcsComponentPool<T> extends Single implements IEcsComponentPool
     {
         public Items:T[] = new Array<T>(MinSize);
         
