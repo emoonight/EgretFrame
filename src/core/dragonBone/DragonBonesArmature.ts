@@ -11,7 +11,6 @@ class DragBonesArmatrure extends View
         
     }
 
-
     public show()
     {
 

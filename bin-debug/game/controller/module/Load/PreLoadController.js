@@ -26,3 +26,4 @@ var PreLoadController = (function (_super) {
     return PreLoadController;
 }(Controller));
 __reflect(PreLoadController.prototype, "PreLoadController");
+//# sourceMappingURL=PreLoadController.js.map

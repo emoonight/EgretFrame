@@ -10,12 +10,21 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 var Layer = (function (_super) {
     __extends(Layer, _super);
-    function Layer() {
+    function Layer(layer) {
         var _this = _super.call(this) || this;
         _this.touchEnabled = false;
         _this.$touchChildren = true;
+        _this.m_layer = layer;
         return _this;
     }
+    Object.defineProperty(Layer.prototype, "Layer", {
+        get: function () {
+            return this.m_layer;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Layer;
 }(egret.DisplayObjectContainer));
 __reflect(Layer.prototype, "Layer");
+//# sourceMappingURL=Layer.js.map

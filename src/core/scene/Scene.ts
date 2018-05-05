@@ -41,6 +41,12 @@ class Scene implements IDispose
         if(!($sceneId == this.SceneId && this.m_isInit))
             this.init(this.SceneId);
         
+        this.addSceneToStage();
+    }
+
+    public onExit():void
+    {
+    
     }
 
     public addLayer($type:LayerType):void
@@ -72,7 +78,12 @@ class Scene implements IDispose
 
     public addSceneToStage()
     {
-        
+        App.stageUt.getStage().addChildAt(this.Stage,0);
+    }
+
+    public removeSceneFromStage()
+    {
+        App.stageUt.getStage().removeChild(this.Stage);
     }
 
     public dispose()

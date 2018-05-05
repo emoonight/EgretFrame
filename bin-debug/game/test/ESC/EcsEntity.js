@@ -13,3 +13,4 @@ var ecs;
     ecs.EcsEntity = EcsEntity;
     __reflect(EcsEntity.prototype, "ecs.EcsEntity");
 })(ecs || (ecs = {}));
+//# sourceMappingURL=EcsEntity.js.map

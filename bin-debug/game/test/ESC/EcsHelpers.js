@@ -23,3 +23,4 @@ var ecs;
     ecs.EcsHelpers = EcsHelpers;
     __reflect(EcsHelpers.prototype, "ecs.EcsHelpers");
 })(ecs || (ecs = {}));
+//# sourceMappingURL=EcsHelpers.js.map

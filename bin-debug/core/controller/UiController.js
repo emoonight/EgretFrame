@@ -16,3 +16,4 @@ var UiController = (function (_super) {
     return UiController;
 }(Controller));
 __reflect(UiController.prototype, "UiController");
+//# sourceMappingURL=UiController.js.map

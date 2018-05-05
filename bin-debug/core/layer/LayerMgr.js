@@ -14,7 +14,7 @@ var LayerMgr = (function () {
         configurable: true
     });
     LayerMgr.prototype.addLayer = function (type, stage) {
-        LayerMgr.s_instance[type] = new Layer();
+        LayerMgr.s_instance[type] = new Layer(type);
         stage.addChild(LayerMgr.s_instance[type]);
     };
     LayerMgr.prototype.removeLayer = function (type) {
@@ -44,3 +44,4 @@ var LayerType;
     LayerType[LayerType["POP"] = 4] = "POP";
     LayerType[LayerType["GUID"] = 5] = "GUID"; //指引
 })(LayerType || (LayerType = {}));
+//# sourceMappingURL=LayerMgr.js.map

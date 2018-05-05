@@ -1,20 +1,21 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
-var TickMgr = (function () {
+var __extends = this && this.__extends || function __extends(t, e) { 
+ function r() { 
+ this.constructor = t;
+}
+for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
+r.prototype = e.prototype, t.prototype = new r();
+};
+var TickMgr = (function (_super) {
+    __extends(TickMgr, _super);
     function TickMgr() {
-        this.m_curTime = 0;
-        this.m_currIndex = 0;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.m_curTime = 0;
+        _this.m_currIndex = 0;
+        return _this;
     }
-    Object.defineProperty(TickMgr, "Instance", {
-        get: function () {
-            if (TickMgr.s_instance == null)
-                TickMgr.s_instance = new TickMgr();
-            return TickMgr.s_instance;
-        },
-        enumerable: true,
-        configurable: true
-    });
     TickMgr.prototype.start = function () {
         egret.ticker.$startTick(this.onTick, this);
     };
@@ -64,5 +65,6 @@ var TickMgr = (function () {
         return false;
     };
     return TickMgr;
-}());
+}(Single));
 __reflect(TickMgr.prototype, "TickMgr");
+//# sourceMappingURL=TickMgr.js.map

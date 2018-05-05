@@ -24,3 +24,4 @@ var PreLoadView = (function (_super) {
     return PreLoadView;
 }(View));
 __reflect(PreLoadView.prototype, "PreLoadView", ["RES.PromiseTaskReporter"]);
+//# sourceMappingURL=PreLoadView.js.map

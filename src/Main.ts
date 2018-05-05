@@ -45,6 +45,8 @@ class Main extends eui.UILayer {
             egret.ticker.resume();
         }
 
+        console.log("能拿到这个对象吗????",egret.lifecycle.stage);
+
         //inject the custom material parser
         //注入自定义的素材解析器
         let assetAdapter = new AssetAdapter();
