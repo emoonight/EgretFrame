@@ -1,5 +1,5 @@
 
-module resUtils
+module ResUtils
 {
     
     export const ROOT = 'resource/';
