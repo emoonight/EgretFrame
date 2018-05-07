@@ -9,4 +9,3 @@ var Model = (function () {
     return Model;
 }());
 __reflect(Model.prototype, "Model");
-//# sourceMappingURL=model.js.map

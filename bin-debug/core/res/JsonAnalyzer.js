@@ -48,6 +48,8 @@ var JsonAnalyzer = (function () {
                     case 1:
                         data = _a.sent();
                         //json 解析
+                        console.log("资源是否有加载成功..........");
+                        console.table(data);
                         return [2 /*return*/, data];
                 }
             });
@@ -63,4 +65,3 @@ var JsonAnalyzer = (function () {
     return JsonAnalyzer;
 }());
 __reflect(JsonAnalyzer.prototype, "JsonAnalyzer", ["RES.processor.Processor"]);
-//# sourceMappingURL=JsonAnalyzer.js.map

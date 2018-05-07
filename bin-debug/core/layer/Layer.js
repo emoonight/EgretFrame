@@ -27,4 +27,3 @@ var Layer = (function (_super) {
     return Layer;
 }(egret.DisplayObjectContainer));
 __reflect(Layer.prototype, "Layer");
-//# sourceMappingURL=Layer.js.map

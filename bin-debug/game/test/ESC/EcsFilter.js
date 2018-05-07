@@ -67,4 +67,3 @@ var ecs;
     ecs.EcsFilter = EcsFilter;
     __reflect(EcsFilter.prototype, "ecs.EcsFilter");
 })(ecs || (ecs = {}));
-//# sourceMappingURL=EcsFilter.js.map

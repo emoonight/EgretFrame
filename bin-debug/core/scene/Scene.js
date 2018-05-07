@@ -29,6 +29,9 @@ var Scene = (function () {
     Scene.prototype.onEnter = function ($sceneId) {
         if (!($sceneId == this.SceneId && this.m_isInit))
             this.init(this.SceneId);
+        this.addSceneToStage();
+    };
+    Scene.prototype.onExit = function () {
     };
     Scene.prototype.addLayer = function ($type) {
         var layer = new Layer($type);
@@ -50,6 +53,10 @@ var Scene = (function () {
         return this.m_layers[$type];
     };
     Scene.prototype.addSceneToStage = function () {
+        App.stageUt.getStage().addChildAt(this.Stage, 0);
+    };
+    Scene.prototype.removeSceneFromStage = function () {
+        App.stageUt.getStage().removeChild(this.Stage);
     };
     Scene.prototype.dispose = function () {
         this.m_autoReleaseResource.forEach(function (url) {
@@ -59,4 +66,3 @@ var Scene = (function () {
     return Scene;
 }());
 __reflect(Scene.prototype, "Scene", ["IDispose"]);
-//# sourceMappingURL=Scene.js.map

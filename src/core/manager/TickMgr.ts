@@ -41,8 +41,8 @@ class TickMgr extends Single
     {
         if(run.tickIndex >= this.m_currIndex || run.tickIndex < 0)
         {
-            run.tickIndex = this.m_currIndex++;
             this[this.m_currIndex]=run;
+            run.tickIndex = this.m_currIndex++;
         }
         else
         {

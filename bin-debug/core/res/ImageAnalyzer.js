@@ -63,4 +63,3 @@ var ImageAnalyzer = (function () {
     return ImageAnalyzer;
 }());
 __reflect(ImageAnalyzer.prototype, "ImageAnalyzer", ["RES.processor.Processor"]);
-//# sourceMappingURL=ImageAnalyzer.js.map

@@ -5,16 +5,27 @@ var App = (function () {
     function App() {
     }
     Object.defineProperty(App, "ScMgr", {
-        get: function () { return SceneManger.Instance(); },
+        //mgr
+        get: function () { return SceneMgr.Instance(); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(App, "tkMrg", {
+    Object.defineProperty(App, "tkMgr", {
         get: function () { return TickMgr.Instance(); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(App, "resMgr", {
+        get: function () { return ResMgr.Instance(); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(App, "stageUt", {
+        //utils
+        get: function () { return StageUtils.Instance(); },
         enumerable: true,
         configurable: true
     });
     return App;
 }());
 __reflect(App.prototype, "App");
-//# sourceMappingURL=App.js.map

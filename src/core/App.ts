@@ -1,9 +1,11 @@
 class App
 {   
     //mgr
-    public static get ScMgr(){ return SceneManger.Instance<SceneManger>(); }
-    public static get tkMrg(){ return TickMgr.Instance<TickMgr>(); }
+    public static get ScMgr(){ return SceneMgr.Instance<SceneMgr>(); }
+    public static get tkMgr(){ return TickMgr.Instance<TickMgr>(); }
+    public static get resMgr(){ return ResMgr.Instance<ResMgr>(); }
 
     //utils
     public static get stageUt(){ return StageUtils.Instance<StageUtils>(); }
+
 }

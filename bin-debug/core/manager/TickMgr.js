@@ -39,8 +39,8 @@ var TickMgr = (function (_super) {
     //插入刷新队列
     TickMgr.prototype.addTick = function (run) {
         if (run.tickIndex >= this.m_currIndex || run.tickIndex < 0) {
-            run.tickIndex = this.m_currIndex++;
             this[this.m_currIndex] = run;
+            run.tickIndex = this.m_currIndex++;
         }
         else {
             this.m_currIndex++;
@@ -67,4 +67,3 @@ var TickMgr = (function (_super) {
     return TickMgr;
 }(Single));
 __reflect(TickMgr.prototype, "TickMgr");
-//# sourceMappingURL=TickMgr.js.map

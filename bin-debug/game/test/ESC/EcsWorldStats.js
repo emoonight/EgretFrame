@@ -15,4 +15,3 @@ var ecs;
     ecs.EcsWorldStats = EcsWorldStats;
     __reflect(EcsWorldStats.prototype, "ecs.EcsWorldStats");
 })(ecs || (ecs = {}));
-//# sourceMappingURL=EcsWorldStats.js.map

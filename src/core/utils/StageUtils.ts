@@ -47,6 +47,7 @@ class StageUtils extends Single
      */
     public getStage():egret.Stage
     {
+        console.log("拿不到这个舞台对象?????????"+egret.lifecycle.stage);
         return egret.lifecycle.stage;
     }
 

@@ -1,6 +1,13 @@
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
+var __extends = this && this.__extends || function __extends(t, e) { 
+ function r() { 
+ this.constructor = t;
+}
+for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
+r.prototype = e.prototype, t.prototype = new r();
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -41,37 +48,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
  * 资源组策略加载
  *
  */
-var ResMgr = (function () {
+var ResMgr = (function (_super) {
+    __extends(ResMgr, _super);
     function ResMgr() {
-        this.m_thread = ResMgr.s_maxThread; //最大加载线程数量
-        this.m_buffer = [];
-        this.m_index = 0;
-        this.m_resPool = {};
-        this.tickIndex = 0;
+        var _this = _super.call(this) || this;
+        _this.m_thread = ResMgr.s_maxThread; //最大加载线程数量
+        _this.m_buffer = [];
+        _this.m_index = 0;
+        _this.m_resPool = {};
+        _this.tickIndex = 0;
         RES.setMaxLoadingThread(ResMgr.s_maxThread);
-        this.m_loader = new RES.ResourceLoader();
-        this.m_image = new ImageAnalyzer();
-        this.m_json = new JsonAnalyzer();
+        _this.m_loader = new RES.ResourceLoader();
+        _this.m_image = new ImageAnalyzer();
+        _this.m_json = new JsonAnalyzer();
+        return _this;
     }
-    Object.defineProperty(ResMgr, "Instance", {
-        get: function () {
-            if (ResMgr.s_instance == null) {
-                ResMgr.s_instance = new ResMgr();
-            }
-            return ResMgr.s_instance;
-        },
-        enumerable: true,
-        configurable: true
-    });
     ResMgr.prototype.loadResorce = function (stage) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: 
-                    //加载组资源前可以用loadres 去加载外部资源初始化界面
-                    return [4 /*yield*/, this.loadConfigs()];
-                    case 1:
+                    case 0:
                         //加载组资源前可以用loadres 去加载外部资源初始化界面
+                        console.log("resMgr.loadResource........" + stage);
+                        return [4 /*yield*/, this.loadConfigs()];
+                    case 1:
                         _a.sent();
                         this.m_index = 0;
                         return [4 /*yield*/, this.loadTheme(stage)];
@@ -116,6 +116,7 @@ var ResMgr = (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
+                        console.log("皮肤配置的路径是----------->" + resUtils.DEF_THM_JSON);
                         var theme = new eui.Theme(resUtils.DEF_THM_JSON, stage);
                         theme.addEventListener(eui.UIEvent.COMPLETE, function () {
                             resolve();
@@ -148,22 +149,16 @@ var ResMgr = (function () {
      * @param call 回调
      */
     ResMgr.prototype.loadRes = function (url, call) {
-        return __awaiter(this, void 0, void 0, function () {
-            var lp, ls, r;
-            return __generator(this, function (_a) {
-                lp = url.lastIndexOf('.') + 1;
-                ls = url.lastIndexOf('/') + 1;
-                r = new LoadItemInfo();
-                r.url = url;
-                r.type = url.substring(lp);
-                r.name = url.substring(ls, lp - 1);
-                r.resBack = call;
-                r.loadBack = new Observer(this.onLoadCompelte, this);
-                r.root = "";
-                this.m_buffer.push(r);
-                return [2 /*return*/];
-            });
-        });
+        var lp = url.lastIndexOf('.') + 1;
+        var ls = url.lastIndexOf('/') + 1;
+        var r = new LoadItemInfo();
+        r.url = url;
+        r.type = url.substring(lp);
+        r.name = url.substring(ls, lp - 1);
+        r.resBack = call;
+        r.loadBack = new Observer(this.onLoadCompelte, this);
+        r.root = "";
+        this.m_buffer.push(r);
     };
     ResMgr.prototype.getProcessor = function (type) {
         switch (type) {
@@ -196,7 +191,7 @@ var ResMgr = (function () {
     ResMgr.s_cfg_arr = [resUtils.DEF_RES_JSON];
     ResMgr.s_grp_arr = [resUtils.GRP_PRELOAD];
     return ResMgr;
-}());
+}(Single));
 __reflect(ResMgr.prototype, "ResMgr", ["IRun"]);
 var LoadItemInfo = (function () {
     function LoadItemInfo() {
@@ -204,4 +199,3 @@ var LoadItemInfo = (function () {
     return LoadItemInfo;
 }());
 __reflect(LoadItemInfo.prototype, "LoadItemInfo", ["RES.ResourceInfo"]);
-//# sourceMappingURL=ResMgr.js.map
