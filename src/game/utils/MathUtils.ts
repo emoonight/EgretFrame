@@ -5,7 +5,7 @@ class MathUtils
      * @param min  最小值
      * @param max  最大值
      */
-    public static Random(min:number,max:number):number
+    public static random(min:number,max:number):number
     {
        return Math.floor(Math.random()*(max-min+1)+min); 
     }
@@ -16,7 +16,7 @@ class MathUtils
      * @param start 起始值
      * @param end 结束值
      */
-    public static RandomRange(len:number,start:number,end:number):number[]
+    public static randomRange(len:number,start:number,end:number):number[]
     {
         let arr:number[] =[];
         let inner = (start,end)=>{
@@ -32,5 +32,10 @@ class MathUtils
         }
 
         return arr;
+    }
+
+    public static sort(pre,next):number
+    {
+        return pre > next ? 1 : -1
     }
 }
