@@ -1,10 +1,11 @@
-var resUtils;
-(function (resUtils) {
-    resUtils.ROOT = 'resource/';
-    resUtils.DEF_RES_JSON = resUtils.ROOT + 'default.res.json';
-    resUtils.DEF_THM_JSON = resUtils.ROOT + 'default.thm.json';
+var ResUtils;
+(function (ResUtils) {
+    ResUtils.ROOT = 'resource/';
+    ResUtils.DEF_RES_JSON = ResUtils.ROOT + 'default.res.json';
+    ResUtils.DEF_THM_JSON = ResUtils.ROOT + 'default.thm.json';
     //////////////////////////////资源组名//////////////////////////////
-    resUtils.GRP_PRELOAD = 'preload';
+    ResUtils.GRP_PRELOAD = 'preload';
     // export const GRP_COMMON ='common';
     //////////////////////////////资源组名//////////////////////////////
-})(resUtils || (resUtils = {}));
+})(ResUtils || (ResUtils = {}));
+//# sourceMappingURL=ResUtils.js.map

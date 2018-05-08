@@ -10,6 +10,8 @@ var Scene = (function () {
         this.m_autoReleaseResource = [];
         this.Stage = new egret.DisplayObjectContainer();
         this.Stage.touchEnabled = false;
+        this.Stage.touchChildren = true;
+        this.Stage.touchEnabled = true;
         this.m_isInit = false;
         this.m_releaseResource = true;
         this.addLayer(LayerType.Sc_Bg);
@@ -66,3 +68,4 @@ var Scene = (function () {
     return Scene;
 }());
 __reflect(Scene.prototype, "Scene", ["IDispose"]);
+//# sourceMappingURL=Scene.js.map

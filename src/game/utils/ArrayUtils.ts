@@ -1,7 +1,5 @@
 class ArrayUtils
 {
-
-
     public static resize<T>(sArr:Array<T>,size:number):Array<T>
     {
         let arr:Array<T> =new Array<T>(size);

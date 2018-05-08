@@ -15,6 +15,9 @@ class Scene implements IDispose
     {
         this.Stage = new egret.DisplayObjectContainer();
         this.Stage.touchEnabled = false;
+        this.Stage.touchChildren = true;
+        this.Stage.touchEnabled = true;
+
         this.m_isInit = false;
         this.m_releaseResource =true;
 
@@ -23,6 +26,7 @@ class Scene implements IDispose
         this.addLayer(LayerType.Sc_Entity);
         this.addLayer(LayerType.Sc_Effect);
     }
+
 
     public init($sceneId:number = undefined):void
     {
@@ -46,7 +50,7 @@ class Scene implements IDispose
 
     public onExit():void
     {
-    
+        
     }
 
     public addLayer($type:LayerType):void

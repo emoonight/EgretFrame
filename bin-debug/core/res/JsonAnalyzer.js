@@ -65,3 +65,4 @@ var JsonAnalyzer = (function () {
     return JsonAnalyzer;
 }());
 __reflect(JsonAnalyzer.prototype, "JsonAnalyzer", ["RES.processor.Processor"]);
+//# sourceMappingURL=JsonAnalyzer.js.map

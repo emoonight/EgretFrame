@@ -6,8 +6,8 @@
 class ResMgr extends Single implements IRun
 {
     private static s_maxThread:number = 5;
-    private static s_cfg_arr=[resUtils.DEF_RES_JSON];
-    private static s_grp_arr=[resUtils.GRP_PRELOAD];
+    private static s_cfg_arr=[ResUtils.DEF_RES_JSON];
+    private static s_grp_arr=[ResUtils.GRP_PRELOAD];
 
 
     public tickIndex;
@@ -37,8 +37,6 @@ class ResMgr extends Single implements IRun
     {
         //加载组资源前可以用loadres 去加载外部资源初始化界面
 
-        console.log("resMgr.loadResource........"+stage);
-
         await this.loadConfigs();
         this.m_index = 0;
         await this.loadTheme(stage);
@@ -55,7 +53,7 @@ class ResMgr extends Single implements IRun
         while(this.m_index < ResMgr.s_cfg_arr.length)
         {
             let cfg = ResMgr.s_cfg_arr[this.m_index];
-            await RES.loadConfig(cfg,resUtils.ROOT)
+            await RES.loadConfig(cfg,ResUtils.ROOT)
             this.m_index++;
         }
     }
@@ -67,8 +65,7 @@ class ResMgr extends Single implements IRun
     private async loadTheme(stage:egret.Stage)
     {
         return new Promise((resolve,reject)=>{
-            console.log("皮肤配置的路径是----------->"+resUtils.DEF_THM_JSON);
-            let theme = new eui.Theme(resUtils.DEF_THM_JSON,stage);
+            let theme = new eui.Theme(ResUtils.DEF_THM_JSON,stage);
             theme.addEventListener(eui.UIEvent.COMPLETE,()=>{
                 resolve();
             },this);

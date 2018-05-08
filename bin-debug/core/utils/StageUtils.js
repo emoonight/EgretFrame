@@ -37,7 +37,6 @@ var StageUtils = (function (_super) {
      * 获取舞台
      */
     StageUtils.prototype.getStage = function () {
-        console.log("拿不到这个舞台对象?????????" + egret.lifecycle.stage);
         return egret.lifecycle.stage;
     };
     /**
@@ -129,3 +128,4 @@ var StageUtils = (function (_super) {
     return StageUtils;
 }(Single));
 __reflect(StageUtils.prototype, "StageUtils");
+//# sourceMappingURL=StageUtils.js.map

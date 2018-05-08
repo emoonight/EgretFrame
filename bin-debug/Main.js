@@ -77,6 +77,8 @@ var Main = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Main.prototype.createChildren = function () {
+        this.touchEnabled = false;
+        this.touchChildren = true;
         _super.prototype.createChildren.call(this);
         egret.lifecycle.addLifecycleListener(function (context) {
             // custom lifecycle plugin
@@ -131,3 +133,4 @@ var Main = (function (_super) {
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");
+//# sourceMappingURL=Main.js.map

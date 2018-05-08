@@ -13,7 +13,7 @@ var Layer = (function (_super) {
     function Layer(layer) {
         var _this = _super.call(this) || this;
         _this.touchEnabled = false;
-        _this.$touchChildren = true;
+        _this.touchChildren = true;
         _this.m_layer = layer;
         return _this;
     }
@@ -27,3 +27,4 @@ var Layer = (function (_super) {
     return Layer;
 }(egret.DisplayObjectContainer));
 __reflect(Layer.prototype, "Layer");
+//# sourceMappingURL=Layer.js.map

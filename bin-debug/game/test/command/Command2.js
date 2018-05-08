@@ -172,3 +172,4 @@ var cmd2;
     }(eui.UILayer));
     __reflect(RunMian.prototype, "RunMian");
 })(cmd2 || (cmd2 = {}));
+//# sourceMappingURL=Command2.js.map

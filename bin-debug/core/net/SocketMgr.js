@@ -38,3 +38,4 @@ var SocketMgr = (function () {
     return SocketMgr;
 }());
 __reflect(SocketMgr.prototype, "SocketMgr");
+//# sourceMappingURL=SocketMgr.js.map

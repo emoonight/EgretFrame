@@ -31,6 +31,10 @@ class Main extends eui.UILayer {
 
 
     protected createChildren(): void {
+
+        this.touchEnabled=false;
+        this.touchChildren=true;
+
         super.createChildren();
 
         egret.lifecycle.addLifecycleListener((context) => {

@@ -10,7 +10,9 @@ class Layer extends egret.DisplayObjectContainer
     {
         super();
         this.touchEnabled=false;
-        this.$touchChildren=true;
+        this.touchChildren=true;
         this.m_layer = layer;
+
     }
+
 }

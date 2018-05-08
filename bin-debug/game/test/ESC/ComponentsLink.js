@@ -13,3 +13,4 @@ var ecs;
     ecs.ComponentsLink = ComponentsLink;
     __reflect(ComponentsLink.prototype, "ecs.ComponentsLink");
 })(ecs || (ecs = {}));
+//# sourceMappingURL=ComponentsLink.js.map

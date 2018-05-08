@@ -36,5 +36,11 @@
     {
       "name": "promise"
     }
-  ]
+  ],
+  "targets": {
+    "ios": {
+      "appname": "demo",
+      "packagename": "com.companyname"
+    }
+  }
 }

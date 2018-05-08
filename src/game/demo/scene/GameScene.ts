@@ -6,15 +6,70 @@ class GameScene extends Scene
     {
         super();
 
-        //第一个当作 门 ，中间的当作 商店 ，最后当作其他
-        let obs:number[] = MathUtils.randomRange(4,0,29);
+    }
 
+    public renderNodes()
+    {
+        let arr = this.createNode();
         for(let i = 0 ; i < 30 ; i++)
         {
-            let num = MathUtils.random(0,3);
-            let node = new GridNode(i,num,this.getLayer(LayerType.Sc_Entity));
+            let node = new GridNode(i,arr[i],this.getLayer(LayerType.Sc_Effect));
             this.m_grids.push(node);
         }
+    }
 
+
+    public onEnter(id:number)
+    {
+        super.onEnter(id);
+        this.renderNodes();
+
+        Emitter.Register(Message.PASS_LEVEL,this.onPassLevel,this);
+    }
+
+    private createNode()
+    {
+        let len = 30;
+        let arr = new Array<number>(30);
+
+        let seed = MathUtils.random(0,29);
+        arr[seed] = 0;
+
+        let shop=0;
+        while(shop<2)
+        {
+            seed = MathUtils.random(0,29);
+            if(arr[seed] == void 0)
+            {
+                arr[seed] = 1;
+                shop++;
+            }
+        }
+
+        for(let i =0 ; i < len ; i++)
+            if(arr[i] == void 0)
+                arr[i] = 2;
+        
+        return arr;
+    }
+
+    private onPassLevel()
+    {
+        if(this.m_grids.filter((node)=>{
+            return node.state;
+        }).length>=27)
+        {
+            this.clearNodes();
+            this.renderNodes();
+        }
+    }
+
+    private clearNodes()
+    {
+        this.m_grids.forEach((node)=>{
+            node = void 0;
+        });
+
+        this.m_grids=[];
     }
 }

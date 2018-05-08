@@ -67,11 +67,11 @@ var ResMgr = (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        //加载组资源前可以用loadres 去加载外部资源初始化界面
-                        console.log("resMgr.loadResource........" + stage);
-                        return [4 /*yield*/, this.loadConfigs()];
+                    case 0: 
+                    //加载组资源前可以用loadres 去加载外部资源初始化界面
+                    return [4 /*yield*/, this.loadConfigs()];
                     case 1:
+                        //加载组资源前可以用loadres 去加载外部资源初始化界面
                         _a.sent();
                         this.m_index = 0;
                         return [4 /*yield*/, this.loadTheme(stage)];
@@ -97,7 +97,7 @@ var ResMgr = (function (_super) {
                     case 0:
                         if (!(this.m_index < ResMgr.s_cfg_arr.length)) return [3 /*break*/, 2];
                         cfg = ResMgr.s_cfg_arr[this.m_index];
-                        return [4 /*yield*/, RES.loadConfig(cfg, resUtils.ROOT)];
+                        return [4 /*yield*/, RES.loadConfig(cfg, ResUtils.ROOT)];
                     case 1:
                         _a.sent();
                         this.m_index++;
@@ -116,8 +116,7 @@ var ResMgr = (function (_super) {
             var _this = this;
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
-                        console.log("皮肤配置的路径是----------->" + resUtils.DEF_THM_JSON);
-                        var theme = new eui.Theme(resUtils.DEF_THM_JSON, stage);
+                        var theme = new eui.Theme(ResUtils.DEF_THM_JSON, stage);
                         theme.addEventListener(eui.UIEvent.COMPLETE, function () {
                             resolve();
                         }, _this);
@@ -188,8 +187,8 @@ var ResMgr = (function (_super) {
         }
     };
     ResMgr.s_maxThread = 5;
-    ResMgr.s_cfg_arr = [resUtils.DEF_RES_JSON];
-    ResMgr.s_grp_arr = [resUtils.GRP_PRELOAD];
+    ResMgr.s_cfg_arr = [ResUtils.DEF_RES_JSON];
+    ResMgr.s_grp_arr = [ResUtils.GRP_PRELOAD];
     return ResMgr;
 }(Single));
 __reflect(ResMgr.prototype, "ResMgr", ["IRun"]);
@@ -199,3 +198,4 @@ var LoadItemInfo = (function () {
     return LoadItemInfo;
 }());
 __reflect(LoadItemInfo.prototype, "LoadItemInfo", ["RES.ResourceInfo"]);
+//# sourceMappingURL=ResMgr.js.map
