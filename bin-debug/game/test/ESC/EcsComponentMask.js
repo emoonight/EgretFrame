@@ -97,4 +97,3 @@ var ecs;
     ecs.EcsComponentMask = EcsComponentMask;
     __reflect(EcsComponentMask.prototype, "ecs.EcsComponentMask");
 })(ecs || (ecs = {}));
-//# sourceMappingURL=EcsComponentMask.js.map

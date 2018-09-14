@@ -48,4 +48,3 @@ var Emitter = (function () {
     return Emitter;
 }());
 __reflect(Emitter.prototype, "Emitter");
-//# sourceMappingURL=Emitter.js.map

@@ -124,13 +124,13 @@ var Main = (function (_super) {
     };
     Main.prototype.initScene = function () {
         App.ScMgr.register(SceneConst.GameScene, GameScene);
+        App.ScMgr.register(SceneConst.WGLScene, WGLScene);
     };
     Main.prototype.initMoudle = function () {
     };
     Main.prototype.enterScene = function () {
-        App.ScMgr.runScene(SceneConst.GameScene);
+        App.ScMgr.runScene(SceneConst.WGLScene);
     };
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");
-//# sourceMappingURL=Main.js.map

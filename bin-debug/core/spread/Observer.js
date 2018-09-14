@@ -22,4 +22,3 @@ var Observer = (function () {
     return Observer;
 }());
 __reflect(Observer.prototype, "Observer");
-//# sourceMappingURL=Observer.js.map

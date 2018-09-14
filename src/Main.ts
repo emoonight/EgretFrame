@@ -78,6 +78,7 @@ class Main extends eui.UILayer {
     private initScene()
     {
         App.ScMgr.register(SceneConst.GameScene,GameScene);
+        App.ScMgr.register(SceneConst.WGLScene,WGLScene);
     }
 
     private initMoudle()
@@ -87,7 +88,7 @@ class Main extends eui.UILayer {
 
     private enterScene()
     {
-        App.ScMgr.runScene(SceneConst.GameScene);
+        App.ScMgr.runScene(SceneConst.WGLScene);
     }
 
 }

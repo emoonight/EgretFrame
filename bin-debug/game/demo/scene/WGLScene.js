@@ -8,11 +8,15 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-var ViewMgr = (function (_super) {
-    __extends(ViewMgr, _super);
-    function ViewMgr() {
+var WGLScene = (function (_super) {
+    __extends(WGLScene, _super);
+    function WGLScene() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    return ViewMgr;
-}(Single));
-__reflect(ViewMgr.prototype, "ViewMgr");
+    WGLScene.prototype.onEnter = function (id) {
+        _super.prototype.onEnter.call(this, id);
+        var flag = egret.WebGLUtils.checkCanUseWebGL();
+    };
+    return WGLScene;
+}(Scene));
+__reflect(WGLScene.prototype, "WGLScene");

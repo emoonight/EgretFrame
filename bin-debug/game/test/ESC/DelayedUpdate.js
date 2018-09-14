@@ -15,4 +15,3 @@ var ecs;
     ecs.DelayedUpdate = DelayedUpdate;
     __reflect(DelayedUpdate.prototype, "ecs.DelayedUpdate");
 })(ecs || (ecs = {}));
-//# sourceMappingURL=DelayedUpdate.js.map
