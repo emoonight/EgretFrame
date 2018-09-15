@@ -42,6 +42,7 @@
 		"bin-debug/core/res/JsonAnalyzer.js",
 		"bin-debug/core/res/ResMgr.js",
 		"bin-debug/LoadingUI.js",
+		"bin-debug/core/shader/ShaderType.js",
 		"bin-debug/core/spread/Emitter.js",
 		"bin-debug/core/spread/Observer.js",
 		"bin-debug/core/utils/StageUtils.js",
