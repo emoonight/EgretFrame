@@ -37,6 +37,7 @@ class Main extends eui.UILayer {
 
         super.createChildren();
 
+
         egret.lifecycle.addLifecycleListener((context) => {
             // custom lifecycle plugin
         })

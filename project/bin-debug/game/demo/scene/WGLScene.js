@@ -20,13 +20,13 @@ var WGLScene = (function (_super) {
             'void main(void){\n' +
             //返回经过变换和投影的顶点值
             ' gl_Position = projectionMatrix * modelViewMatrix * vec4(vertexPos,1.0);\n' +
-            ' vColor = vertextColor;\n' +
+            ' vColor = vertexColor;\n' +
             '}\n';
         _this.m_fragmentSource = 'precision mediump float;\n' +
             'varying vec4 vColor;\n' +
             'void main(void){\n' +
             //始终输出白色
-            ' gl_fragColor = vColor;\n' +
+            ' gl_FragColor = vColor;\n' +
             '}\n';
         return _this;
     }
@@ -41,6 +41,7 @@ var WGLScene = (function (_super) {
         var gl;
         if (egret.WebGLUtils.checkCanUseWebGL()) {
             var canvas = document.getElementsByTagName('canvas')[0];
+            this.initMatrix(canvas);
             gl = canvas.getContext('experimental-webgl');
             if (gl)
                 return gl;
@@ -48,6 +49,10 @@ var WGLScene = (function (_super) {
         return null;
     };
     WGLScene.prototype.initMatrix = function (canvas) {
+        this.m_modelViewMatrix = mat4.create();
+        mat4.translate(this.m_modelViewMatrix, this.m_modelViewMatrix, [0, 0, -3.333]);
+        this.m_projectionMatrix = mat4.create();
+        mat4.perspective(this.m_projectionMatrix, Math.PI / 4, canvas.width / canvas.height, 1, 1000);
     };
     WGLScene.prototype.buildShaderProgram = function (gl) {
         var vertexShader = this.createShader(gl, gl.VERTEX_SHADER, this.m_vertexSource);
@@ -55,8 +60,11 @@ var WGLScene = (function (_super) {
         this.m_shaderProgram = gl.createProgram();
         gl.attachShader(this.m_shaderProgram, vertexShader);
         gl.attachShader(this.m_shaderProgram, fragmentShader);
+        gl.linkProgram(this.m_shaderProgram);
         this.m_shaderVertexPositionAttr = gl.getAttribLocation(this.m_shaderProgram, 'vertexPos');
         gl.enableVertexAttribArray(this.m_shaderVertexPositionAttr);
+        this.m_shaderVertexColorAttr = gl.getAttribLocation(this.m_shaderProgram, 'vertexColor');
+        gl.enableVertexAttribArray(this.m_shaderVertexColorAttr);
         this.m_shaderProjectionMatrixUniform = gl.getUniformLocation(this.m_shaderProgram, 'projectionMatrix');
         this.m_shaderModelViewMatrixUniform = gl.getUniformLocation(this.m_shaderProgram, 'modelViewMatrix');
         if (!gl.getProgramParameter(this.m_shaderProgram, gl.LINK_STATUS))
@@ -146,7 +154,7 @@ var WGLScene = (function (_super) {
         var cube = {
             buffer: vertexBuffer,
             colorBuffer: colorBuffer,
-            indices: cubeIndices,
+            indices: cubeIndexBuffer,
             vertSize: 3,
             nVerts: 24,
             colorSize: 4,
@@ -164,8 +172,11 @@ var WGLScene = (function (_super) {
         gl.bindBuffer(gl.ARRAY_BUFFER, obj.buffer);
         gl.vertexAttribPointer(this.m_shaderVertexPositionAttr, obj.vertSize, gl.FLOAT, false, 0, 0);
         gl.bindBuffer(gl.ARRAY_BUFFER, obj.colorBuffer);
-        gl.vertexAttribPointer(this.m_shaderVertexPositionAttr, obj.colorSize, gl.FLOAT, false, 0, 0);
-        gl.bindBuffer(gl.ARRAY_BUFFER, obj.indices);
+        gl.vertexAttribPointer(this.m_shaderVertexColorAttr, obj.colorSize, gl.FLOAT, false, 0, 0);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, obj.indices);
+        gl.uniformMatrix4fv(this.m_shaderProjectionMatrixUniform, false, this.m_projectionMatrix);
+        gl.uniformMatrix4fv(this.m_shaderModelViewMatrixUniform, false, this.m_modelViewMatrix);
+        gl.drawElements(obj.primtype, obj.nIndices, gl.UNSIGNED_SHORT, 0);
     };
     return WGLScene;
 }(Scene));
