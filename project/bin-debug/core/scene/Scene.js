@@ -68,3 +68,4 @@ var Scene = (function () {
     return Scene;
 }());
 __reflect(Scene.prototype, "Scene", ["IDispose"]);
+//# sourceMappingURL=Scene.js.map

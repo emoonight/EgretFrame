@@ -9,3 +9,4 @@ var Message = (function () {
     return Message;
 }());
 __reflect(Message.prototype, "Message");
+//# sourceMappingURL=Message.js.map

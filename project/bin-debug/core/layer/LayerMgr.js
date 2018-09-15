@@ -44,3 +44,4 @@ var LayerType;
     LayerType[LayerType["POP"] = 4] = "POP";
     LayerType[LayerType["GUID"] = 5] = "GUID"; //指引
 })(LayerType || (LayerType = {}));
+//# sourceMappingURL=LayerMgr.js.map

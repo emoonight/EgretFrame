@@ -9,3 +9,4 @@ var LayerType;
     LayerType[LayerType["Ui_Pop"] = 11] = "Ui_Pop";
     LayerType[LayerType["Ui_Tips"] = 12] = "Ui_Tips";
 })(LayerType || (LayerType = {}));
+//# sourceMappingURL=LayerType.js.map

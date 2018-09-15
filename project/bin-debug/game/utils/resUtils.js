@@ -8,3 +8,4 @@ var ResUtils;
     // export const GRP_COMMON ='common';
     //////////////////////////////资源组名//////////////////////////////
 })(ResUtils || (ResUtils = {}));
+//# sourceMappingURL=resUtils.js.map

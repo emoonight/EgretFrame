@@ -62,3 +62,4 @@ var ecs;
     ecs.EcsComponentPool = EcsComponentPool;
     __reflect(EcsComponentPool.prototype, "ecs.EcsComponentPool", ["ecs.IEcsComponentPool"]);
 })(ecs || (ecs = {}));
+//# sourceMappingURL=EcsComponentPool.js.map

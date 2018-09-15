@@ -34,3 +34,4 @@ var Single = (function () {
     return Single;
 }());
 __reflect(Single.prototype, "Single");
+//# sourceMappingURL=Single.js.map

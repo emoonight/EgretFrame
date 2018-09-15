@@ -41,3 +41,4 @@ var glMatrix;
     }
     glMatrix.equals = equals;
 })(glMatrix || (glMatrix = {}));
+//# sourceMappingURL=glMatrix.js.map

@@ -9,3 +9,4 @@ var ShaderType;
      */
     ShaderType[ShaderType["FRAGEMENT"] = 1] = "FRAGEMENT";
 })(ShaderType || (ShaderType = {}));
+//# sourceMappingURL=ShaderType.js.map

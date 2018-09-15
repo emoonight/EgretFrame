@@ -165,7 +165,7 @@ var WGLScene = (function (_super) {
         return cube;
     };
     WGLScene.prototype.drawCube = function (gl, obj) {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0); //黑色背景
+        gl.clearColor(1.0, 0.0, 0.0, 1.0); //黑色背景
         gl.enable(gl.DEPTH_TEST); //深度测试
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.useProgram(this.m_shaderProgram);
@@ -181,3 +181,4 @@ var WGLScene = (function (_super) {
     return WGLScene;
 }(Scene));
 __reflect(WGLScene.prototype, "WGLScene");
+//# sourceMappingURL=WGLScene.js.map
