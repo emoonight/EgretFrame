@@ -62,4 +62,3 @@ var GameScene = (function (_super) {
     return GameScene;
 }(Scene));
 __reflect(GameScene.prototype, "GameScene");
-//# sourceMappingURL=GameScene.js.map

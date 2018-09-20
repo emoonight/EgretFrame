@@ -14,4 +14,3 @@ function getCounter() {
     c.update = function () { };
     return c;
 }
-//# sourceMappingURL=IFunc.js.map

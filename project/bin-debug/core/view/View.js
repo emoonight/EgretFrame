@@ -44,4 +44,3 @@ var View = (function (_super) {
     return View;
 }(egret.DisplayObjectContainer));
 __reflect(View.prototype, "View", ["IDispose", "IRun"]);
-//# sourceMappingURL=View.js.map

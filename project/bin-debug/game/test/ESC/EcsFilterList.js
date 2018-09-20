@@ -12,4 +12,3 @@ var ecs;
     ecs.EcsFilterList = EcsFilterList;
     __reflect(EcsFilterList.prototype, "ecs.EcsFilterList");
 })(ecs || (ecs = {}));
-//# sourceMappingURL=EcsFilterList.js.map

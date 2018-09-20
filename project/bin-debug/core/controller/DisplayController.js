@@ -16,4 +16,3 @@ var DisplayController = (function (_super) {
     return DisplayController;
 }(Controller));
 __reflect(DisplayController.prototype, "DisplayController");
-//# sourceMappingURL=DisplayController.js.map

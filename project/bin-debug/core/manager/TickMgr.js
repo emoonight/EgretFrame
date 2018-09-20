@@ -67,4 +67,3 @@ var TickMgr = (function (_super) {
     return TickMgr;
 }(Single));
 __reflect(TickMgr.prototype, "TickMgr");
-//# sourceMappingURL=TickMgr.js.map

@@ -1,5 +1,6 @@
 module mat4{
-    /**
+
+/**
  * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
  * @module mat4
  */
@@ -10,35 +11,35 @@ module mat4{
  * @returns {mat4} a new 4x4 matrix
  */
 export function create() {
-    var out = new glMatrix.ARRAY_TYPE(16);
-    if (glMatrix.ARRAY_TYPE != Float32Array) {
-      out[1] = 0;
-      out[2] = 0;
-      out[3] = 0;
-      out[4] = 0;
-      out[6] = 0;
-      out[7] = 0;
-      out[8] = 0;
-      out[9] = 0;
-      out[11] = 0;
-      out[12] = 0;
-      out[13] = 0;
-      out[14] = 0;
-    }
-    out[0] = 1;
-    out[5] = 1;
-    out[10] = 1;
-    out[15] = 1;
-    return out;
+      var out = new glMatrix.ARRAY_TYPE(16);
+      if (glMatrix.ARRAY_TYPE != Float32Array) {
+        out[1] = 0;
+        out[2] = 0;
+        out[3] = 0;
+        out[4] = 0;
+        out[6] = 0;
+        out[7] = 0;
+        out[8] = 0;
+        out[9] = 0;
+        out[11] = 0;
+        out[12] = 0;
+        out[13] = 0;
+        out[14] = 0;
+      }
+      out[0] = 1;
+      out[5] = 1;
+      out[10] = 1;
+      out[15] = 1;
+      return out;
   }
   
-  /**
-   * Creates a new mat4 initialized with values from an existing matrix
-   *
-   * @param {mat4} a matrix to clone
-   * @returns {mat4} a new 4x4 matrix
-   */
-  export function clone(a) {
+/**
+ * Creates a new mat4 initialized with values from an existing matrix
+ *
+ * @param {mat4} a matrix to clone
+ * @returns {mat4} a new 4x4 matrix
+ */
+export function clone(a) {
     var out = new glMatrix.ARRAY_TYPE(16);
     out[0] = a[0];
     out[1] = a[1];
@@ -57,7 +58,7 @@ export function create() {
     out[14] = a[14];
     out[15] = a[15];
     return out;
-  }
+}
   
   /**
    * Copy the values from one mat4 to another
@@ -67,23 +68,23 @@ export function create() {
    * @returns {mat4} out
    */
   export function copy(out, a) {
-    out[0] = a[0];
-    out[1] = a[1];
-    out[2] = a[2];
-    out[3] = a[3];
-    out[4] = a[4];
-    out[5] = a[5];
-    out[6] = a[6];
-    out[7] = a[7];
-    out[8] = a[8];
-    out[9] = a[9];
-    out[10] = a[10];
-    out[11] = a[11];
-    out[12] = a[12];
-    out[13] = a[13];
-    out[14] = a[14];
-    out[15] = a[15];
-    return out;
+      out[0] = a[0];
+      out[1] = a[1];
+      out[2] = a[2];
+      out[3] = a[3];
+      out[4] = a[4];
+      out[5] = a[5];
+      out[6] = a[6];
+      out[7] = a[7];
+      out[8] = a[8];
+      out[9] = a[9];
+      out[10] = a[10];
+      out[11] = a[11];
+      out[12] = a[12];
+      out[13] = a[13];
+      out[14] = a[14];
+      out[15] = a[15];
+      return out;
   }
   
   /**
@@ -108,24 +109,24 @@ export function create() {
    * @returns {mat4} A new mat4
    */
   export function fromValues(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
-    var out = new glMatrix.ARRAY_TYPE(16);
-    out[0] = m00;
-    out[1] = m01;
-    out[2] = m02;
-    out[3] = m03;
-    out[4] = m10;
-    out[5] = m11;
-    out[6] = m12;
-    out[7] = m13;
-    out[8] = m20;
-    out[9] = m21;
-    out[10] = m22;
-    out[11] = m23;
-    out[12] = m30;
-    out[13] = m31;
-    out[14] = m32;
-    out[15] = m33;
-    return out;
+      var out = new glMatrix.ARRAY_TYPE(16);
+      out[0] = m00;
+      out[1] = m01;
+      out[2] = m02;
+      out[3] = m03;
+      out[4] = m10;
+      out[5] = m11;
+      out[6] = m12;
+      out[7] = m13;
+      out[8] = m20;
+      out[9] = m21;
+      out[10] = m22;
+      out[11] = m23;
+      out[12] = m30;
+      out[13] = m31;
+      out[14] = m32;
+      out[15] = m33;
+      return out;
   }
   
   /**
@@ -151,23 +152,23 @@ export function create() {
    * @returns {mat4} out
    */
   export function set(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
-    out[0] = m00;
-    out[1] = m01;
-    out[2] = m02;
-    out[3] = m03;
-    out[4] = m10;
-    out[5] = m11;
-    out[6] = m12;
-    out[7] = m13;
-    out[8] = m20;
-    out[9] = m21;
-    out[10] = m22;
-    out[11] = m23;
-    out[12] = m30;
-    out[13] = m31;
-    out[14] = m32;
-    out[15] = m33;
-    return out;
+      out[0] = m00;
+      out[1] = m01;
+      out[2] = m02;
+      out[3] = m03;
+      out[4] = m10;
+      out[5] = m11;
+      out[6] = m12;
+      out[7] = m13;
+      out[8] = m20;
+      out[9] = m21;
+      out[10] = m22;
+      out[11] = m23;
+      out[12] = m30;
+      out[13] = m31;
+      out[14] = m32;
+      out[15] = m33;
+      return out;
   }
   
   /**
@@ -177,23 +178,23 @@ export function create() {
    * @returns {mat4} out
    */
   export function identity(out) {
-    out[0] = 1;
-    out[1] = 0;
-    out[2] = 0;
-    out[3] = 0;
-    out[4] = 0;
-    out[5] = 1;
-    out[6] = 0;
-    out[7] = 0;
-    out[8] = 0;
-    out[9] = 0;
-    out[10] = 1;
-    out[11] = 0;
-    out[12] = 0;
-    out[13] = 0;
-    out[14] = 0;
-    out[15] = 1;
-    return out;
+      out[0] = 1;
+      out[1] = 0;
+      out[2] = 0;
+      out[3] = 0;
+      out[4] = 0;
+      out[5] = 1;
+      out[6] = 0;
+      out[7] = 0;
+      out[8] = 0;
+      out[9] = 0;
+      out[10] = 1;
+      out[11] = 0;
+      out[12] = 0;
+      out[13] = 0;
+      out[14] = 0;
+      out[15] = 1;
+      return out;
   }
   
   /**

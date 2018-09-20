@@ -1659,4 +1659,3 @@ var mat4;
      */
     mat4.sub = subtract;
 })(mat4 || (mat4 = {}));
-//# sourceMappingURL=mat4.js.map

@@ -35,30 +35,15 @@ class WGLScene extends Scene
     public onEnter(id:number)
     {
         super.onEnter(id);
-
       
-        let gl = this.getGL();
+        let gl = App.wglMgr.getWGL()
+        let canvas = App.wglMgr.getCanvas();
+        this.initMatrix(canvas);
+
         this.buildShaderProgram(gl);
 
         let cube = this.getCube(gl);
         this.drawCube(gl,cube);
-    }
-
-    public getGL():WebGLRenderingContext
-    {
-        let gl:WebGLRenderingContext ;
-
-        if(egret.WebGLUtils.checkCanUseWebGL())
-        {
-            let canvas = document.getElementsByTagName('canvas')[0];
-            this.initMatrix(canvas);
-            gl = canvas.getContext('experimental-webgl')
-            
-            if(gl)
-                return gl;
-        }
-
-        return null;
     }
 
 
@@ -221,8 +206,12 @@ class WGLScene extends Scene
 
         gl.bindBuffer(gl.ARRAY_BUFFER,obj.buffer);
         gl.vertexAttribPointer(this.m_shaderVertexPositionAttr,obj.vertSize,gl.FLOAT,false,0,0);
+        gl.enableVertexAttribArray(this.m_shaderVertexPositionAttr);
+
         gl.bindBuffer(gl.ARRAY_BUFFER,obj.colorBuffer);
         gl.vertexAttribPointer(this.m_shaderVertexColorAttr,obj.colorSize,gl.FLOAT,false,0,0);
+        gl.enableVertexAttribArray(this.m_shaderVertexColorAttr);
+        
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,obj.indices);
 
         gl.uniformMatrix4fv(this.m_shaderProjectionMatrixUniform,false,this.m_projectionMatrix);

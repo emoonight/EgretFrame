@@ -332,4 +332,3 @@ var ecs;
     ecs.EcsWorld = EcsWorld;
     __reflect(EcsWorld.prototype, "ecs.EcsWorld", ["ecs.IEcsReadOnlyWorld"]);
 })(ecs || (ecs = {}));
-//# sourceMappingURL=IESC.js.map

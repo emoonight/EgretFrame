@@ -165,14 +165,16 @@ var WGLScene = (function (_super) {
         return cube;
     };
     WGLScene.prototype.drawCube = function (gl, obj) {
-        gl.clearColor(1.0, 0.0, 0.0, 1.0); //黑色背景
+        gl.clearColor(0.0, 0.0, 0.0, 1.0); //黑色背景
         gl.enable(gl.DEPTH_TEST); //深度测试
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.useProgram(this.m_shaderProgram);
         gl.bindBuffer(gl.ARRAY_BUFFER, obj.buffer);
         gl.vertexAttribPointer(this.m_shaderVertexPositionAttr, obj.vertSize, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(this.m_shaderVertexPositionAttr);
         gl.bindBuffer(gl.ARRAY_BUFFER, obj.colorBuffer);
         gl.vertexAttribPointer(this.m_shaderVertexColorAttr, obj.colorSize, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(this.m_shaderVertexColorAttr);
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, obj.indices);
         gl.uniformMatrix4fv(this.m_shaderProjectionMatrixUniform, false, this.m_projectionMatrix);
         gl.uniformMatrix4fv(this.m_shaderModelViewMatrixUniform, false, this.m_modelViewMatrix);
@@ -181,4 +183,3 @@ var WGLScene = (function (_super) {
     return WGLScene;
 }(Scene));
 __reflect(WGLScene.prototype, "WGLScene");
-//# sourceMappingURL=WGLScene.js.map
